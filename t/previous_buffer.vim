@@ -57,12 +57,31 @@ describe 'previous_buffer'
     end
 
     it 'keeps a separate jumplist per window'
+        " Create a vertical split
         wincmd v
-        1wincmd w
-        Expect winnr() == 1
 
+        " Open two buffers in window 1
+        1wincmd w
+        e w1-test1.vim
+        e w1-test2.vim
+
+        " Open two buffers in window 3
         2wincmd w
-        Expect winnr() == 2
+        e w2-test1.vim
+        e w2-test2.vim
+
+        " Jump to window 1 and test the previous buffer
+        1wincmd w
+        PreviousBuffer
+        Expect bufname('%') == 'w1-test1.vim'
+
+        " Jump to window 2 and test the previous buffer
+        2wincmd w
+        PreviousBuffer
+        Expect bufname('%') == 'w2-test1.vim'
+    end
+
+    it 'ignores windows based on a user defined regex'
         TODO
     end
 end
