@@ -1,4 +1,4 @@
-runtime! autoload/previous_buffer.vim
+runtime! plugin/previous_buffer.vim
 
 describe 'previous_buffer'
     before
