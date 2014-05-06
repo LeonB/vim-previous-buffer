@@ -13,13 +13,16 @@
 " How to solve: ??
 
 autocmd BufLeave * call s:storeBuffer()
-" autocmd BufEnter * call s:storeBuffer()
+
+let g:previous_buffer_ignore_pattern =
+      \ get(g:, 'previous_buffer_ignore_pattern', '')
 
 function! s:storeBuffer()
-    " Don't store buffer if it isn't listed
-    if &buflisted == 0
+    if !s:bufferIsApplicable()
         return
     end
+
+    echo s:bufferIsApplicable()
 
     if exists('w:previous_buffer')
         " If previous_buffer exists, store that value in
@@ -30,6 +33,21 @@ function! s:storeBuffer()
 
     " Store current buffer
     let w:previous_buffer = bufnr('%')
+endfunction
+
+function! s:bufferIsApplicable()
+    " Don't store buffer if it isn't listed
+    if &buflisted == 0
+        return 0
+    end
+
+    if g:previous_buffer_ignore_pattern != ''
+        if bufname('%') =~? g:previous_buffer_ignore_pattern
+            return 0
+        end
+    end
+
+    return 1
 endfunction
 
 function! s:getPreviousBuffer()

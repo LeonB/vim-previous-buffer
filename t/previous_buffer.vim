@@ -82,6 +82,18 @@ describe 'previous_buffer'
     end
 
     it 'ignores windows based on a user defined regex'
-        TODO
+        let g:previous_buffer_ignore_pattern = 'test2.vim'
+        e test1.vim
+        e test2.vim
+        e test3.vim
+        PreviousBuffer
+        Expect bufname('%') == 'test1.vim'
+
+        let g:previous_buffer_ignore_pattern = 'test_dir'
+        e test1.vim
+        e test_dir/test1.vim
+        e test3.vim
+        PreviousBuffer
+        Expect bufname('%') == 'test1.vim'
     end
 end
