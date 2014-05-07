@@ -22,8 +22,6 @@ function! s:storeBuffer()
         return
     end
 
-    echo s:bufferIsApplicable()
-
     if exists('w:previous_buffer')
         " If previous_buffer exists, store that value in
         " previous_previous_buffer so I you jump to a non-applicable buffer and
