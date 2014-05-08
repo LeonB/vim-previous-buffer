@@ -25,14 +25,14 @@ a multi-window setup you jump back to the right place.
                                                  *previous-buffer-installation*
 Installation ~
 
-I recommend using Tim Pope's pathogen plugin, Shougo's NeoBundle plugin or
-Gmarik's Vundle plugin to install this.
+I recommend using Tim Pope's pathogen plugin [2], Shougo's NeoBundle plugin [3]
+or Gmarik's Vundle plugin [4] to install this.
 
 ===============================================================================
                                                         *previous-buffer-usage*
 Usage ~
 
-The plugin provides a :PreviousBuffer command but it would be a lot easier to
+The plugin provides a |:PreviousBuffer| command but it would be a lot easier to
 configure a mapping for it. I use this:
 >
   nmap <leader>bn :PreviousBuffer<CR>
@@ -41,10 +41,10 @@ configure a mapping for it. I use this:
                                                 *previous-buffer-configuration*
 Configuration ~
 
-You can configure the plugin to ignore additional buffers (that have buflisted
-set) by setting the variable |g:previous_buffer_ignore_pattern|. The variable
-string is treated as a regex when it is matched against the buffer name.
-|bufname()| is used for the match.
+You can configure the plugin to ignore additional buffers (that have
+|buflisted| set) by setting the variable |g:previous_buffer_ignore_pattern|.
+The variable string is treated as a regex when it is matched against the buffer
+name. |bufname()| is used for the match.
 >
   let g:previous_buffer_ignore_pattern = 'test_dir'
 <
@@ -62,5 +62,8 @@ Same terms as Vim itself (see |license|)
 References ~
 
 [1] https://github.com/Shougo/unite.vim
+[2] https://github.com/tpope/vim-pathogen
+[3] https://github.com/Shougo/neobundle.vim
+[4] https://github.com/gmarik/Vundle.vim
 
 vim: ft=help

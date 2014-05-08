@@ -9,12 +9,14 @@ so even in the case of a multi-window setup you jump back to the right place.
 
 ## Installation
 
-I recommend using Tim Pope's pathogen plugin, Shougo's NeoBundle plugin or
-Gmarik's Vundle plugin to install this.
+I recommend using [Tim Pope's pathogen
+plugin](https://github.com/tpope/vim-pathogen), [Shougo's NeoBundle
+plugin](https://github.com/Shougo/neobundle.vim) or [Gmarik's Vundle
+plugin](https://github.com/gmarik/Vundle.vim) to install this.
 
 ## Usage
 
-The plugin provides a :PreviousBuffer command but it would be a lot easier to
+The plugin provides a `:PreviousBuffer` command but it would be a lot easier to
 configure a mapping for it. I use this:
 
 ```
@@ -23,7 +25,7 @@ nmap <leader>bn :PreviousBuffer<CR>
 
 ## Configuration
 
-You can configure the plugin to ignore additional buffers (that have buflisted
+You can configure the plugin to ignore additional buffers (that have `buflisted`
 set) by setting the variable `g:previous_buffer_ignore_pattern`. The variable
 string is treated as a regex when it is matched against the buffer name.
 `bufname()` is used for the match.
