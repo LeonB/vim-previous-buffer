@@ -65,7 +65,7 @@ describe 'previous_buffer'
         e w1-test1.vim
         e w1-test2.vim
 
-        " Open two buffers in window 3
+        " Open two buffers in window 2
         2wincmd w
         e w2-test1.vim
         e w2-test2.vim
@@ -79,6 +79,33 @@ describe 'previous_buffer'
         2wincmd w
         PreviousBuffer
         Expect bufname('%') == 'w2-test1.vim'
+    end
+
+    it 'ignores moving of windows'
+        " Create a vertical split
+        wincmd v
+
+        " Open two buffers in window 1
+        1wincmd w
+        e w1-test1.vim
+        e w1-test2.vim
+
+        " Open two buffers in window 2
+        2wincmd w
+        e w2-test1.vim
+        e w2-test2.vim
+
+        " Move window 2 to the first position
+        " See `window-moving`
+        wincmd H
+
+        PreviousBuffer
+        Expect bufname('%') == 'w2-test1.vim'
+
+        " Jump to window 2 (previously 1) and test the previous buffer
+        2wincmd w
+        PreviousBuffer
+        Expect bufname('%') == 'w1-test1.vim'
     end
 
     it 'ignores windows based on a user defined regex'
